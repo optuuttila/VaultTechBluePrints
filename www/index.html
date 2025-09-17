@@ -1,1 +1,133 @@
-<!DOCTYPE html><html><head><title>Hello World</title></head><body><h1>Hello, World!</h1></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OSSI TUUTTILA ARCHITECTURE</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header class="header">
+  <div class="header-item left">
+    <a href="#home" class="logo">OSSI TUUTTILA</a>
+  </div>
+
+  <div class="header-item center">
+    <div class="menu-toggle" id="menu-toggle">MENU</div>
+  </div>
+
+  <div class="header-item right">
+    <div class="contact-square" id="contact-square"></div>
+  </div>
+</header>
+
+<!-- Fullscreen menu overlay -->
+<div class="menu-overlay" id="menu-overlay">
+  <nav class="menu-nav">
+    <ul>
+      <li><a href="#about">ABOUT</a></li>
+      <li><a href="#projects">PROJECTS</a></li>
+      <li><a href="#resume">RESUME</a></li>
+    </ul>
+  </nav>
+</div>
+
+  <!-- Hero Section -->
+<section class="hero" id="home">
+  <div class="hero-text">
+    <h1>Hi,</h1>
+    <h1>I'm Ossi</h1>
+    <h1>and this is my</h1>
+    <h1>Architecture website</h1>
+  </div>
+  <div class="hero-image">
+    <figure>
+    <img src="sahasaaren tislaamo.jpg" alt="Architecture Project" />
+    <figcaption>"In Vitro" Distillery — Oulu, Sahasaari</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- Highlighted Projects Section -->
+
+<section class="highlighted-projects" id="projects">
+  <h2>Highlighted projects</h2>
+  <ul>
+    <li>
+      <span class="project-title">Transient State</span>
+      <span class="project-subtitle">Saint-Gobain Architecture Competition</span>
+    </li>
+    <li>
+      <span class="project-title">In Vitro</span>
+      <span class="project-subtitle">Distillery</span>
+    </li>
+    <li>
+      <span class="project-title">Lastenlinna</span>
+      <span class="project-subtitle">Arts and Cultural Centre</span>
+    </li>
+    <li>
+      <span class="project-title">Apartment Building</span>
+      <span class="project-subtitle">Bachelor Thesis</span>
+    </li>
+    <li>
+      <span class="project-title">Oulunsalo Centre Improvement</span>
+      <span class="project-subtitle">Cultural Environment Analysis & Development</span>
+    </li>
+  </ul>
+</section>
+
+<!-- About Me Section -->
+<section class="about-me" id="about">
+  <div class="about-image">
+    <img src="me.jpg" alt="Ossi Tuuttila portrait" />
+  </div>
+  <div class="about-text">
+    <h2>About me</h2>
+    <p>
+      I am Ossi Tuuttila, 
+      an architect student pursuing 
+      a Master’s degree in Architecture 
+      at the northernmost architecture school 
+      in the world, 
+      where my passion lies in sustainable design, 
+      cultural heritage preservation, 
+      and innovative spatial solutions.
+    </p>
+     <p>
+      My design approach is rooted in sustainability, 
+      renovation, and the preservation of cultural history. 
+      I am inspired by people 
+      who see the world not just as it is, 
+      but as it could be—and 
+      I strive to bring that vision into my work.
+     </p>
+  </div>
+</section>
+
+<!-- Projects osio -->
+<section class="projects-page" style="display: none;">
+  <h2>All Projects</h2>
+  <p>
+    Here you can find a selection of my architectural projects,
+    including residential, cultural, and commercial works.
+  </p>
+</section>
+
+<!-- Resume osio -->
+<section class="resume-page" style="display: none;">
+  <h2>Resume</h2>
+  <p>
+    Education, work experience and achievements will be listed here.
+  </p>
+</section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>Ossi Tuuttila<br>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

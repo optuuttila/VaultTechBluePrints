@@ -1,0 +1,406 @@
+/* Yleiset asetukset */
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  background: #ffffff;
+  color: #2027a8;
+}
+
+h1, p, a {
+  margin: 0;
+  color: #2027a8;
+  text-decoration: none;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+img {
+  border-radius: 0 !important;
+}
+
+.logo {
+  font-weight: bold;
+  color: #2027a8;
+  text-decoration: none;
+  white-space: nowrap; /* estää rivinvaihdot */
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: transparent;
+  z-index: 1002;
+  box-sizing: border-box;
+}
+
+/* Jokainen itemti vie vain tarvittavan tilan */
+.header-item {
+  display: flex;
+  align-items: center;
+}
+
+/* Logo vasemmalle */
+.header-item.left {
+  flex: 0;
+  justify-content: flex-start;
+  font-weight: bold;
+  white-space: nowrap; /* pitää tekstin yhdellä rivillä */
+}
+
+/* MENU keskelle */
+.header-item.center {
+  flex: 1; /* tämä vie jäljelle jäävän tilan ja keskittää MENU:n */
+  justify-content: center;
+}
+
+/* Neliö oikealle */
+.header-item.right {
+  flex: 0;
+  justify-content: flex-end;
+}
+
+/* MENU */
+.menu-toggle {
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+  text-align: center;
+}
+
+/* Neliö */
+.contact-square {
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: #2027a8;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+/* Hover-efekti */
+.contact-square:hover {
+  background-color: #151b70;
+  transform: scale(1.1);
+}
+
+.logo {
+  font-weight: bold;
+  color: #2027a8;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+/* Hover OSSI TUUTTILA */
+.logo:hover {
+  color: #151b70;     /* hieman tummempi sininen */
+  transform: scale(1.05); /* pieni suurennus */
+}
+
+/* MENU */
+.menu-toggle {
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+  text-align: center;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+/* Hover MENU */
+.menu-toggle:hover {
+  color: #151b70;
+  transform: scale(1.05);
+}
+
+/* overlay: blur + fade */
+.menu-overlay {
+  position: fixed;
+  inset: 0; /* top:0; right:0; bottom:0; left:0; */
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(10px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+  z-index: 1001; /* header 1002 on päällä */
+}
+
+/* overlay näkyväksi */
+.menu-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* menu-nav asetetaan absoluuttisesti JS:llä suoraan MENU-painikkeen alle.
+   Annetaan oletusarvoksi keskitys (fallback). */
+.menu-nav {
+  position: absolute; /* JS päivitää left/top/transform */
+  left: 50%;
+  top: 64px;            /* fallback header-korkeudelle */
+  transform: translateX(-50%);
+  z-index: 1002;        /* näkyy blurin päällä */
+  width: max-content;   /* pakkaa sisällön */
+  background: transparent;
+}
+
+/* Lista: vasen tasaus, lähekkäin rivit */
+.menu-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: left;   /* vasen tasaus sisällölle */
+}
+
+/* tiiviit rivivälit */
+.menu-nav ul li {
+  margin: 0.35rem 0;
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity 0.28s ease, transform 0.28s ease;
+  white-space: nowrap;
+}
+
+/* kun overlay on auki, animoidaan rivit sisään (stagger) */
+.menu-overlay.active .menu-nav ul li:nth-child(1) { opacity: 1; transform: translateY(0); transition-delay: 0.05s; }
+.menu-overlay.active .menu-nav ul li:nth-child(2) { opacity: 1; transform: translateY(0); transition-delay: 0.10s; }
+.menu-overlay.active .menu-nav ul li:nth-child(3) { opacity: 1; transform: translateY(0); transition-delay: 0.15s; }
+
+.menu-nav ul li a {
+  text-decoration: none;
+  color: #2027a8;
+  font-size: 1rem; /* sama kuin headerissa */
+  font-weight: bold;
+  display: inline-block;
+  padding: 0.125rem 0;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+
+/* Hover overlay-linkeille */
+.menu-nav ul li a:hover {
+  color: #151b70;        /* tummempi sävy */
+  transform: scale(1.05); /* pieni zoomaus */
+}
+
+/* Hero-section */
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  width: 100%;
+  box-sizing: border-box;
+  /* margin-top: poistetaan */
+}
+
+/* Tekstiosa */
+.hero-text {
+  flex: 1; /* 1/3 leveydestä */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem;
+  color: #2027a8;
+  box-sizing: border-box;
+  font-size: clamp(1.2rem, 2vw + 0.5rem, 3rem);
+  max-width: 600px;  /* rajoitetaan maksimileveys */
+}
+
+/* Kuva-osa */
+.hero-image {
+  flex: 2; /* 2/3 leveydestä */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.hero-image figure {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.hero-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.hero-image figcaption {
+  font-size: 0.9rem;
+  color: rgba(32, 39, 168, 0.6); /* vaaleampi sininen */
+  margin-top: 0.5rem;
+  text-align: left;
+}
+
+/* --- Responsiivisuus --- */
+/* --- Responsiivisuus pienille näytöille --- */
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column; /* vaihdetaan pystyyn */
+  }
+
+  .hero-text {
+    font-size: clamp(1rem, 1.5vw + 0.5rem, 2rem);
+    max-width: 100%; /* mobiilissa saa mennä koko leveydelle */
+    text-align: left;
+  }
+
+  .hero-image {
+    flex: none;
+    width: 100%;
+    height: auto;
+  }
+
+  .hero-image img {
+    width: 100%;
+    height: auto;
+  }
+}S
+
+/* Highlighted Projects wrapper */
+.highlighted-projects {
+  width: 100%;
+  max-width: 1200px;
+  margin: 6rem auto;
+  padding: 0;              /* poistetaan ylimääräiset sisennykset */
+  box-sizing: border-box;
+  color: #2027a8;
+}
+
+.highlighted-projects h2,
+.highlighted-projects ul {
+  margin-left: 2rem;       /* pikselintarkka sisennys, sama kuin hero-text padding */
+}
+
+/* otsikko */
+.highlighted-projects h2 {
+  font-size: 2rem;
+  font-weight: lighter;
+  color: rgba(32, 39, 168, 0.6);
+  margin-bottom: 2rem;
+}
+
+/* lista */
+.highlighted-projects ul {
+  margin-left: -10px;       /* pikselintarkka sisennys, sama kuin hero-text padding */
+}
+
+.highlighted-projects li {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 1.2rem;
+  font-size: 1.5rem;
+}
+
+.project-title {
+  font-weight: normal;
+  margin-right: 1rem;
+}
+
+.project-subtitle {
+  font-size: 1rem;
+  color: rgba(32, 39, 168, 0.6);
+}
+
+.about-me {
+  display: none; /* piilotettu oletuksena */
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 6rem auto;
+  padding: 0 2rem;
+  box-sizing: border-box;
+}
+
+.about-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 0; /* terävät reunat */
+  object-fit: cover;
+}
+
+.about-text h2 {
+  font-size: clamp(1.5rem, 2vw + 0.5rem, 2.5rem);
+  font-weight: normal;
+  color: rgba(32, 39, 168, 0.6);
+  margin-bottom: 1rem;
+}
+
+.about-text p {
+  font-size: clamp(1rem, 1vw + 0.8rem, 1.8rem);
+  line-height: 1.6;
+  color: #2027a8;
+}
+
+/* pienillä näytöillä pinotaan */
+@media (max-width: 768px) {
+  .about-me {
+    grid-template-columns: 1fr;
+  }
+
+  .about-image,
+  .about-text {
+    width: 100%;
+  }
+}
+
+/* Yleinen väli osioiden väliin */
+section {
+  margin-bottom: 4rem; /* isompi väli osioiden välillä */
+}
+
+/* Väli otsikon ja listan väliin */
+.highlighted-projects h2 {
+  margin-bottom: 3rem; /* aiempi 2rem → nyt 3rem */
+}
+
+/* Väli listan rivien välillä */
+.highlighted-projects li {
+  margin-bottom: 2rem; /* aiempi 1.2rem → nyt isompi hengittävä väli */
+}
+
+/* About-me osiossa lisätään myös väli kappaleeseen */
+.about-me p {
+  margin-bottom: 2rem;
+  line-height: 1.6; /* parantaa luettavuutta */
+}
+
+.projects-page,
+.resume-page {
+  width: 100%;
+  max-width: 1000px;
+  margin: 6rem auto;
+  padding: 0 2rem;
+  box-sizing: border-box;
+  color: #2027a8;
+}
+
+.projects-page h2,
+.resume-page h2 {
+  font-size: 2rem;
+  font-weight: normal;
+  color: rgba(32, 39, 168, 0.6);
+  margin-bottom: 2rem;
+}
+
+.hero-text, .highlighted-projects {
+  outline: 1px solid red;
+}
+
+/* Footer */
+.footer {
+  padding: 2rem;
+  text-align: left;
+  font-size: 0.9rem;
+  display: none; /* piilotetaan aluksi */
+}
